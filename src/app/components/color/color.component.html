@@ -1,4 +1,4 @@
-<div *ngIf="colorLoaded==false" class="spinner-border" role="status">
+<!-- <div *ngIf="colorLoaded==false" class="spinner-border" role="status">
     <span class="visually-hidden">Loading...</span>
 </div>
 
@@ -13,4 +13,14 @@
         <td>{{color.colorId}}</td>
         <td>{{color.colorName}}</td>
     </tr>
-</table>
+</table> -->
+
+<ul class="list-group">
+    <li class="list-group-item list-group-item-action list-group-item-success"><b>Renk Listesi</b></li>
+    <li (click)="setCurrentColor(color)" 
+    routerLink="/cars/color/{{color.colorId}}"
+    *ngFor="let color of colors" 
+    [class]="getCurrentColorClass(color)">{{color.colorName}}</li>
+</ul>
+
+<h5 *ngIf="currentColor">{{currentColor.colorName}} seçtiniz</h5>

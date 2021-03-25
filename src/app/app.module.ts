@@ -11,6 +11,9 @@ import { ColorComponent } from './components/color/color.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { MainComponent } from './components/main/main.component';
+import { CarDetailComponent } from './components/car/car-detail/car-detail.component';
+import { BrandSearchPipe } from './pipes/brand-search.pipe';
+import { ColorSearchPipe } from './pipes/color-search.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { MainComponent } from './components/main/main.component';
     ColorComponent,
     CustomerComponent,
     RentalComponent,
-    MainComponent
+    MainComponent,
+    CarDetailComponent,
+    BrandSearchPipe,
+    ColorSearchPipe
   ],
   imports: [
     BrowserModule,

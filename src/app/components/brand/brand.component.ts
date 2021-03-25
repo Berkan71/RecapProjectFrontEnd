@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Brand } from 'src/app/models/brand/brand';
 import { BrandService } from 'src/app/services/brand/brand.service';
 
@@ -10,6 +11,7 @@ import { BrandService } from 'src/app/services/brand/brand.service';
 export class BrandComponent implements OnInit {
   brands: Brand[] = [];
   brandLoaded = false;
+  currentBrand : Brand;
 
   constructor(private brandService:BrandService) { }
 
@@ -22,6 +24,18 @@ export class BrandComponent implements OnInit {
       this.brands=response.data
       this.brandLoaded=true;
     })
+  }
+
+  setCurrentBrand(brand:Brand){
+    this.currentBrand = brand;
+  }
+
+  getCurrentBrandClass(brand:Brand){
+    if(brand == this.currentBrand){
+      return "list-group-item bg-success text-white";
+    }else {
+      return "list-group-item";
+    }
   }
 
 }
