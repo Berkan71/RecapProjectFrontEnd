@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car/car';
 import { CarService } from 'src/app/services/car/car.service';
+import { RentService } from 'src/app/services/rental/rent.service';
 import { environment } from 'src/environments/environment';
 
 
@@ -15,14 +17,20 @@ export class CarComponent implements OnInit {
   carLoaded = false;
   currentCar : Car;
   imageBasePath = environment.baseUrl
-  
+  filterCar="";
+  checkIfCarNull=false;
+
   constructor(private carService:CarService,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute:ActivatedRoute, 
+    private toastrService:ToastrService,
+    private rentService:RentService
     ) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=> {
-      if(params["brandId"]){
+      if (params['brandId'] && params['colorId']) {
+        this.getCarByFilter(params['brandId'], params['colorId']);
+      } else if(params["brandId"]){
         this.getCarsByBrand(params["brandId"])
       } else if (params["colorId"]){
         this.getCarsByColor(params["colorId"])
@@ -53,12 +61,19 @@ export class CarComponent implements OnInit {
     })
   }
 
-  // getCarImageClass(car:Car){
-  //   let path = (car.imagePath).replace("unsafe:","")
-  //   if(car == this.currentCar){
-  //     return path;
-  //   }else {
-  //     return path;
-  //   }
-  // }
+  getCarByFilter(brandId:number, colorId: number) {
+    this.carService.getCarsByBrandAndColorId(brandId,colorId).subscribe(response => {
+      this.cars = response.data,
+      this.carLoaded = true
+      if(this.cars.length == 0){
+        this.toastrService.info('Bu Özelliklere Sahip Araç Bulunamamıştır', 'Uyarı!');
+      }
+    })
+  }
+
+  rentTheCar(car:Car) {
+
+    this.toastrService.success("Araç Kiralandı", car.carName)
+    this.rentService.rentTheCar(car);
+  }
 }

@@ -14,11 +14,19 @@
     </tr>
 </table> -->
 <br/>
+<div class="mb-3">
+    <label for="filterBrand" class="form-label">Marka Ara</label>
+    <input type="text" [(ngModel)]="filterBrand" class="form-control" id="filterBrand"
+     placeholder="Marka ara">
+  </div>
+  <div *ngIf="filterBrand" class="alert alert-success">
+    {{filterBrand}} aradınız
+  </div>
 <ul class="list-group">
     <li class="list-group-item list-group-item-action list-group-item-success"><b>Marka Listesi</b></li>
     <li (click)="setCurrentBrand(brand)"
     routerLink="/cars/brand/{{brand.brandId}}"
-    *ngFor="let brand of brands"
+    *ngFor="let brand of brands | filterBrand:filterBrand"
     [class]="getCurrentBrandClass(brand)">{{brand.brandName}}</li>
 </ul>
 

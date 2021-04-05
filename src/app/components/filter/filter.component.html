@@ -1,0 +1,77 @@
+<!-- <div class="container bg-dark">
+
+    <div class="row my-3 pt-3">
+        <div class="col-md-12">
+            <select 
+                    [(ngModel)]="currentBrandId"  class="form-select px-2"  >
+                <option 
+                    [ngValue]="undefined" disabled  selected> 
+                    -- select a brand -- 
+                </option>
+                <option 
+                    *ngFor="let brand of brands" 
+                    [value]="brand.brandId" 
+                    [selected]="setCurrentBrand(brand.brandId)">
+                    {{brand.brandName}}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-md-12">
+            <select 
+                    [(ngModel)]="currentColorId"
+                    class="form-select px-2" >
+                <option 
+                    [ngValue]="undefined" disabled  selected> 
+                    -- select a color -- 
+                </option>
+                <option 
+                    *ngFor="let color of colors" 
+                    [value]="color.colorId" 
+                    [selected]="setCurrentColor(color.colorId)">
+                    {{color.colorName}}
+                </option>
+          </select>
+        </div>
+    </div>
+    <div class="row my-3 pb-3">
+        <div class="col-md-6">
+            <button 
+            class="btn btn-secondary"
+            routerLink="/cars/filter/{{currentBrandId}}/{{currentColorId}}" >
+                Filter
+            </button>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-warning"
+            routerLink="/cars">
+                Clear
+            </button>
+        </div>
+    </div>
+</div> -->
+
+<div class="row mb-2">
+    <div class="col col-4">
+        <select [(ngModel)]="brandFilter"  class="form-select" aria-label="Default select example">
+            <option [ngValue]="undefined" disabled  selected>Markalar</option>
+            <option *ngFor="let brand of brands" [value]="brand.brandId" selected="{{getSelectedBrand(brand.brandId)}}">{{brand.brandName}}</option>
+          </select>
+    </div>
+    <div class="col col-4">
+        <select [(ngModel)]="colorFilter" class="form-select" aria-label="Default select example">
+            <option [ngValue]="undefined" disabled  selected>Renkler</option>
+            <option *ngFor="let color of colors" [value]="color.colorId" [selected]="getSelectedColor(color.colorId)"  >{{color.colorName}}</option>
+          </select>
+    </div>
+    <div class="col col-2">
+        <button style="width: 100px;"
+        routerLink="/cars/filter/{{brandFilter}}/{{colorFilter}}" class="btn btn-success">Filtrele</button>
+        </div>
+        <div class="col col-2">
+            <button style="width: 100px;"
+            routerLink="/cars" class="btn btn-primary">Temizle</button>
+        </div>
+</div>

@@ -2,10 +2,21 @@
 <div *ngIf="carLoaded==false" class="spinner-border" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
+<hr/>
+<br/>
+<app-filter></app-filter>
+<hr/>
+<br/>
+<div class="mb-3">
+  <label for="filterCar" class="form-label">Araç Arama</label>
+  <input type="text" class="form-control" [(ngModel)]="filterCar" id="filterCar" placeholder="Arama İfadesi">
+</div>
+<div *ngIf="filterCar" class="alert alert-success">
+  {{filterCar}}
+</div>
 <div class="row" *ngIf="carLoaded==true">
-  <div *ngFor="let car of cars" class="card" style="width:300px; margin:5px;">
+  <div *ngFor="let car of cars | filterCarPipe:filterCar" class="card" style="width:300px; margin:5px;">
     <img src="{{imageBasePath}}{{car.imagePath}}" class="card-img-top" alt="{{car.description}} Image" width="auto" height="auto" style="margin-top: 5px; border-radius: 10px;">
-    <!-- <img src="{{imageBasePath}}//uploads//1ff16c15-f5d0-444b-84e7-1de0f660209a.jpg" class="card-img-top" alt="{{car.description}} Image" width="auto" height="auto"> -->
     <div  class="card-body">
       <h5 class="card-title">{{car.description}}</h5>
     </div >
@@ -20,7 +31,9 @@
         <button routerLink="/car/details/{{car.id}}" style="width: 100px;" type="button" class="btn btn-outline-success">Detaylar</button>
       </section>
       <section style="float: right">
-        <button type="button" style="width: 100px;" class="btn btn-outline-success">Kirala</button>
+        <!-- <button type="button" (click)="rentTheCar(car)" style="width: 100px;" class="btn btn-outline-success">Kirala</button> -->
+        
+        <app-rental [car]="car"></app-rental>
       </section>
     </div>
   </div>

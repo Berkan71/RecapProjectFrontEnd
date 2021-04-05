@@ -12,7 +12,7 @@ export class BrandComponent implements OnInit {
   brands: Brand[] = [];
   brandLoaded = false;
   currentBrand : Brand;
-
+  filterBrand="";
   constructor(private brandService:BrandService) { }
 
   ngOnInit(): void {

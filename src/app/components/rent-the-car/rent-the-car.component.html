@@ -1,0 +1,10 @@
+<li *ngIf="rentItems.length>0" class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Kiralama
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <li *ngFor="let rentItem of rentItems"><a class="dropdown-item"><span class="badge bg-success">{{rentItem.quantity}}</span>&emsp;{{rentItem.car.carName}}</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item"> Kiralanan Araçlar </a></li>
+    </ul>
+  </li>

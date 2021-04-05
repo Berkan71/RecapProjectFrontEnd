@@ -15,12 +15,20 @@
     </tr>
 </table> -->
 
+
+<hr/>
+<div class="mb-3">
+    <label for="filterColor" class="form-label">Renk Ara</label>
+    <input type="text" [(ngModel)]="filterColor" class="form-control" id="filterColor" placeholder="Renk ara">
+</div>
+<div *ngIf="filterColor" class="alert alert-success">
+    {{filterColor}} aradınız
+</div>
+
 <ul class="list-group">
     <li class="list-group-item list-group-item-action list-group-item-success"><b>Renk Listesi</b></li>
-    <li (click)="setCurrentColor(color)" 
-    routerLink="/cars/color/{{color.colorId}}"
-    *ngFor="let color of colors" 
-    [class]="getCurrentColorClass(color)">{{color.colorName}}</li>
+    <li (click)="setCurrentColor(color)" routerLink="/cars/color/{{color.colorId}}" *ngFor="let color of colors | filterColor:filterColor"
+        [class]="getCurrentColorClass(color)">{{color.colorName}}</li>
 </ul>
 
 <h5 *ngIf="currentColor">{{currentColor.colorName}} seçtiniz</h5>

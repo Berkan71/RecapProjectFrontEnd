@@ -1,0 +1,8 @@
+.credit-card {
+  height: 150px;
+  width: 300px;
+  background: #b2fefa;
+  background: -webkit-linear-gradient(to right, #b2fefa, #0ed2f7);
+  background: linear-gradient(to right, #b2fefa, #0ed2f7);
+  border-radius: 10px;
+}
