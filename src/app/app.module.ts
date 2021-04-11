@@ -29,7 +29,12 @@ import { ColorListComponent } from './components/color-list/color-list.component
 import { BrandListComponent } from './components/brand-list/brand-list.component';
 import { BrandUpdateComponent } from './components/brand-update/brand-update.component';
 import { ColorUpdateComponent } from './components/color-update/color-update.component';
-import { CarUpdateComponent } from './components/car-update/car-update.component'
+import { CarUpdateComponent } from './components/car-update/car-update.component';
+import { LoginComponent } from './components/login/login/login.component';
+import { RegisterComponent } from './components/register/register/register.component';
+import { NaviAuthComponent } from './components/navi-auth/navi-auth.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { FooterComponent } from './components/footer/footer.component'
 
 @NgModule({
   declarations: [
@@ -56,7 +61,12 @@ import { CarUpdateComponent } from './components/car-update/car-update.component
     BrandListComponent,
     BrandUpdateComponent,
     ColorUpdateComponent,
-    CarUpdateComponent
+    CarUpdateComponent,
+    LoginComponent,
+    RegisterComponent,
+    NaviAuthComponent,
+    ProfileComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
